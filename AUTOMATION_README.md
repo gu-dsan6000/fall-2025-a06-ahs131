@@ -91,7 +91,7 @@ Before running the setup script, ensure you have:
 
 2. Run the setup script:
    ```bash
-   ./setup-spark-cluster.sh 123.45.67.89
+   ./setup-spark-cluster.sh 73.200.210.73
    ```
 
 3. Wait for setup to complete (~10-15 minutes)

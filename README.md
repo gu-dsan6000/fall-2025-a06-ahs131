@@ -68,7 +68,7 @@ ls data/raw/application_* | head -10
 # Should see directories like: application_1485248649253_0052
 
 # 5. Create your personal S3 bucket (replace YOUR-NET-ID with your actual net ID)
-export YOUR_NET_ID="your-net-id"  # e.g., "abc123"
+export YOUR_NET_ID="ahs131"  # e.g., "abc123"
 aws s3 mb s3://${YOUR_NET_ID}-assignment-spark-cluster-logs
 
 # 6. Upload the data to S3
@@ -322,18 +322,20 @@ source cluster-ips.txt
 uv run python ~/problem1.py spark://$MASTER_PRIVATE_IP:7077 --net-id YOUR-NET-ID
 
 # Example:
-# uv run python ~/problem1.py spark://$MASTER_PRIVATE_IP:7077 --net-id abc123
+# uv run python ~/problem2.py spark://$MASTER_PRIVATE_IP:7077 --net-id ahs131
 
 # Exit back to your local machine
 exit
 
 # Download results to your repo (adjust filenames based on your problem)
 # For problem1, download all 3 output files:
+scp -i $KEY_FILE ubuntu@$MASTER_PUBLIC_IP:/home/ubuntu/spark-cluster/data/output/problem1_counts.csv data/output/
 scp -i $KEY_FILE ubuntu@$MASTER_PUBLIC_IP:~/spark-cluster/problem1_counts.csv data/output/
 scp -i $KEY_FILE ubuntu@$MASTER_PUBLIC_IP:~/spark-cluster/problem1_sample.csv data/output/
 scp -i $KEY_FILE ubuntu@$MASTER_PUBLIC_IP:~/spark-cluster/problem1_summary.txt data/output/
 
 # For problem2, download all 5 output files:
+scp -i $KEY_FILE ubuntu@$MASTER_PUBLIC_IP:/home/ubuntu/spark-cluster/data/output/problem2_density_plot.png data/output/
 scp -i $KEY_FILE ubuntu@$MASTER_PUBLIC_IP:~/spark-cluster/problem2_timeline.csv data/output/
 scp -i $KEY_FILE ubuntu@$MASTER_PUBLIC_IP:~/spark-cluster/problem2_cluster_summary.csv data/output/
 scp -i $KEY_FILE ubuntu@$MASTER_PUBLIC_IP:~/spark-cluster/problem2_stats.txt data/output/
